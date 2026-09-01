@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>LED-Wand Planer</title>
+  <link rel="stylesheet" href="style.css">
+  <!-- html2pdf.js Bibliothek für den PDF-Export -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+</head>
+<body>
+  <div class="sidebar">
+    <h2>LED-Wand Konfigurator</h2>
+    
+    <div class="input-group">
+      <label for="cols">Breite (Anzahl Cabinets):</label>
+      <input type="number" id="cols" value="4" min="1" max="30">
+    </div>
+
+    <div class="input-group">
+      <label for="rows">Höhe (Anzahl Cabinets):</label>
+      <input type="number" id="rows" value="3" min="1" max="30">
+    </div>
+
+    <button id="btn-generate">Wand generieren</button>
+    <button id="btn-pdf" class="btn-export">PDF Exportieren</button>
+
+    <hr>
+
+    <h3>Materialübersicht</h3>
+    <div class="material-box">
+      <div><span>LED Cabinets:</span> <strong id="sideCabinets">0 Stk.</strong></div>
+      <div><span>Tri-Frames:</span> <strong id="sideTriFrames">0 Stk.</strong></div>
+      <div><span>Querverstrebung:</span> <strong id="sideStiffeners">0 Stk.</strong></div>
+      <div><span>Swivel Coupler:</span> <strong id="sideCouplers">0 Stk.</strong></div>
+    </div>
+
+    <hr>
+
+    <h3>Querverstrebungen (Traversen)</h3>
+    <div class="bauteil-item bauteil" draggable="true" data-type="1punkt">
+      <span>1-Punkt Pipe</span>
+      <svg width="100%" height="20" viewBox="0 0 200 20">
+        <line x1="5" y1="10" x2="195" y2="10" stroke="#00d2ff" stroke-width="6" stroke-linecap="round"/>
+        <circle cx="10" cy="10" r="3" fill="#ffffff"/>
+        <circle cx="190" cy="10" r="3" fill="#ffffff"/>
+      </svg>
+    </div>
+
+    <div class="bauteil-item bauteil" draggable="true" data-type="hofbolt">
+      <span>HOFBOLT 2-Punkt</span>
+      <svg width="100%" height="32" viewBox="0 0 200 32">
+        <line x1="0" y1="6" x2="200" y2="6" stroke="#ffffff" stroke-width="3"/>
+        <line x1="0" y1="26" x2="200" y2="26" stroke="#ffffff" stroke-width="3"/>
+        <path d="M0 6 L20 26 L40 6 L60 26 L80 6 L100 22 L120 6 L140 26 L160 6 L180 26 L200 6" stroke="#888888" stroke-width="2" fill="none"/>
+      </svg>
+    </div>
+
+    <div class="bauteil-item bauteil" draggable="true" data-type="3punkt">
+      <span>3-Punkt Traverse</span>
+      <svg width="100%" height="36" viewBox="0 0 200 36">
+        <line x1="0" y1="4" x2="200" y2="4" stroke="#ffffff" stroke-width="3"/>
+        <line x1="0" y1="18" x2="200" y2="18" stroke="#007acc" stroke-width="2" stroke-dasharray="4,4"/>
+        <line x1="0" y1="32" x2="200" y2="32" stroke="#ffffff" stroke-width="3"/>
+        <path d="M0 4 L20 32 L40 4 L60 32 L80 4 L100 32 L120 4 L140 32 L160 4 L180 26 L200 4" stroke="#007acc" stroke-width="2" fill="none"/>
+      </svg>
+    </div>
+  </div>
+
+  <div id="planer-area">
+    <!-- Skalierbare Wand-Bühne -->
+    <div id="wall-stage">
+      <div id="wall-container"></div>
+    </div>
+
+    <!-- Plankopf im Arbeitsbereich -->
+    <div id="plankopf-overlay">
+      <div class="pk-header">
+        <img src="bilder/logo.png" alt="PROEVENT Logo" class="pk-logo">
+        <div class="pk-header-text">
+          <span class="pk-title" contenteditable="true" id="pkProject">PROJEKT: LED-Wand Planung</span>
+          <span class="pk-sub">Veranstaltungstechnik Layout</span>
+        </div>
+      </div>
+      <div class="pk-body">
+        <div><span>Ersteller:</span> <strong contenteditable="true" id="pkCreator">Dr. Haerdle</strong></div>
+        <div><span>Gewerk:</span> <strong>Video / Rigging</strong></div>
+        <div><span>Cabinets:</span> <strong id="pkCount">0 Stk.</strong></div>
+        <div><span>Raster:</span> <strong id="pkGrid">0 x 0</strong></div>
+        <div><span>Tri-Frames:</span> <strong id="pkTriFrames">0 Stk.</strong></div>
+        <div><span>Verstrebungen:</span> <strong id="pkStiffeners">0 Stk.</strong></div>
+        <div><span>Swivel Coupler:</span> <strong id="pkCouplers">0 Stk.</strong></div>
+        <div><span>Datum:</span> <strong id="pkDate">-</strong></div>
+        <div><span>Plan-Nr:</span> <strong contenteditable="true" id="pkNo">VT-2026-001</strong></div>
+      </div>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>

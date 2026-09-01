@@ -1,0 +1,364 @@
+/* Eigene Schriftart PRO EVENT GmbH Bold einbinden */
+@font-face {
+  font-family: 'PROEVENT-Bold';
+  src: url('bilder/PROEVENTGmbH-Bold.ttf') format('truetype');
+  font-weight: bold;
+  font-style: normal;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  display: flex;
+  margin: 0;
+  font-family: 'PROEVENT-Bold', Arial, sans-serif;
+  height: 100vh;
+  background-color: #121212;
+  color: #ffffff;
+  overflow: hidden;
+}
+
+.sidebar {
+  width: 280px;
+  background-color: #1e1e1e;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  border-right: 2px solid #333;
+  overflow-y: auto;
+  z-index: 10;
+}
+
+.input-group {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.input-group label {
+  font-size: 13px;
+  color: #ccc;
+}
+
+.input-group input {
+  padding: 8px;
+  border-radius: 4px;
+  border: 1px solid #444;
+  background-color: #2a2a2a;
+  color: #fff;
+  font-family: inherit;
+}
+
+button {
+  padding: 10px;
+  background-color: #007acc;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-weight: bold;
+  font-family: 'PROEVENT-Bold', Arial, sans-serif;
+}
+
+button:hover {
+  background-color: #005999;
+}
+
+.btn-export {
+  background-color: #28a745;
+  margin-top: -5px;
+}
+
+.btn-export:hover {
+  background-color: #218838;
+}
+
+hr {
+  border: 0;
+  border-top: 1px solid #333;
+  width: 100%;
+}
+
+/* Materialübersicht in der Sidebar */
+.material-box {
+  background: #262626;
+  border: 1px solid #3a3a3a;
+  border-radius: 6px;
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  font-size: 12px;
+}
+
+.material-box div {
+  display: flex;
+  justify-content: space-between;
+  border-bottom: 1px solid #333333;
+  padding-bottom: 3px;
+}
+
+.material-box span {
+  color: #aaaaaa;
+}
+
+.material-box strong {
+  color: #00d2ff;
+}
+
+.bauteil-item {
+  background-color: #2a2a2a;
+  padding: 10px;
+  border-radius: 6px;
+  text-align: center;
+  cursor: grab;
+  user-select: none;
+  transition: border-color 0.2s;
+  border: 1px solid transparent;
+}
+
+.bauteil-item:hover {
+  border-color: #007acc;
+  background-color: #333333;
+}
+
+.bauteil-item span {
+  display: block;
+  font-size: 13px;
+  margin-bottom: 6px;
+  color: #dddddd;
+}
+
+#planer-area {
+  flex-grow: 1;
+  position: relative;
+  background-color: #181818;
+  background-image: 
+    linear-gradient(to right, #282828 1px, transparent 1px),
+    linear-gradient(to bottom, #282828 1px, transparent 1px);
+  background-size: 20px 20px; 
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+  overflow: hidden;
+  page-break-inside: avoid !important;
+}
+
+/* Wand-Bühne mit sanftem Auto-Scaling */
+#wall-stage {
+  position: relative;
+  display: inline-block;
+  transform-origin: center center;
+  transition: transform 0.1s ease-out;
+}
+
+#wall-container {
+  position: relative;
+  display: grid;
+  gap: 0px;
+}
+
+.cabinet-wrapper {
+  position: relative;
+  width: 100px;
+  height: 200px;
+  cursor: pointer;
+  overflow: visible;
+}
+
+.cabinet-img {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+/* Vektor-Tri-Frame CAD Style Overlay */
+.tri-frame-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 5;
+  filter: drop-shadow(0px 0px 4px rgba(0, 0, 0, 0.9));
+  overflow: visible;
+}
+
+/* Dynamisch gezeichnete Vektor-Querverstrebungen */
+.placed-element {
+  position: absolute;
+  left: 0 !important;
+  width: 100% !important;
+  cursor: move;
+  user-select: none;
+  z-index: 10;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+}
+
+.truss-svg-wrapper {
+  width: 100%;
+  display: block;
+  filter: drop-shadow(0px 3px 6px rgba(0,0,0,0.9));
+}
+
+.truss-label-tag {
+  font-size: 10px;
+  background: rgba(0, 122, 204, 0.9);
+  color: #ffffff;
+  padding: 2px 8px;
+  border-radius: 3px;
+  margin-top: 2px;
+  margin-right: 6px;
+  letter-spacing: 0.5px;
+  white-space: nowrap;
+  pointer-events: none;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.6);
+}
+
+/* Plankopf Overlay Style */
+#plankopf-overlay {
+  position: absolute;
+  bottom: 20px;
+  right: 20px;
+  width: 350px;
+  background: rgba(18, 18, 18, 0.95);
+  border: 1px solid #444444;
+  color: #ffffff;
+  font-size: 11px;
+  z-index: 100;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.7);
+  border-radius: 4px;
+}
+
+.pk-header {
+  background: #252525;
+  padding: 8px 10px;
+  border-bottom: 1px solid #444444;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  text-align: left;
+}
+
+.pk-logo {
+  height: 22px;
+  width: auto;
+  max-width: 110px;
+  object-fit: contain;
+}
+
+.pk-header-text {
+  flex-grow: 1;
+}
+
+.pk-title {
+  display: block;
+  font-weight: bold;
+  color: #007acc;
+  font-size: 12px;
+}
+
+.pk-sub {
+  font-size: 10px;
+  color: #aaaaaa;
+}
+
+.pk-body {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 6px;
+  padding: 8px;
+}
+
+.pk-body div {
+  display: flex;
+  justify-content: space-between;
+  border-bottom: 1px solid #2a2a2a;
+  padding-bottom: 2px;
+}
+
+.pk-body span {
+  color: #888888;
+}
+
+.pk-body strong {
+  color: #ffffff;
+}
+
+/* Visuelle Hervorhebung für editierbare Felder */
+[contenteditable="true"] {
+  outline: none;
+  border-bottom: 1px dashed #007acc;
+  cursor: text;
+  transition: background-color 0.2s, border-color 0.2s;
+}
+
+[contenteditable="true"]:hover {
+  background: rgba(255, 255, 255, 0.05);
+}
+
+[contenteditable="true"]:focus {
+  background: rgba(0, 122, 204, 0.2);
+  border-bottom: 1px solid #00d2ff;
+  border-radius: 2px;
+}
+
+/* A4 & A3 Druckmodi für den PDF-Export */
+body.pdf-export-mode-a4 .sidebar,
+body.pdf-export-mode-a3 .sidebar {
+  display: none !important;
+}
+
+body.pdf-export-mode-a4 #planer-area {
+  position: fixed !important;
+  top: 0 !important;
+  left: 0 !important;
+  width: 297mm !important;
+  height: 210mm !important;
+  max-width: 297mm !important;
+  max-height: 210mm !important;
+  padding: 10mm !important;
+  margin: 0 !important;
+  z-index: 999999 !important;
+  background-color: #181818 !important;
+  display: flex !important;
+  justify-content: center !important;
+  align-items: center !important;
+  overflow: hidden !important;
+  page-break-after: avoid !important;
+  page-break-before: avoid !important;
+}
+
+body.pdf-export-mode-a3 #planer-area {
+  position: fixed !important;
+  top: 0 !important;
+  left: 0 !important;
+  width: 420mm !important;
+  height: 297mm !important;
+  max-width: 420mm !important;
+  max-height: 297mm !important;
+  padding: 15mm !important;
+  margin: 0 !important;
+  z-index: 999999 !important;
+  background-color: #181818 !important;
+  display: flex !important;
+  justify-content: center !important;
+  align-items: center !important;
+  overflow: hidden !important;
+  page-break-after: avoid !important;
+  page-break-before: avoid !important;
+}
+
+body.pdf-export-mode-a4 #plankopf-overlay,
+body.pdf-export-mode-a3 #plankopf-overlay {
+  position: absolute !important;
+  bottom: 8mm !important;
+  right: 8mm !important;
+}
